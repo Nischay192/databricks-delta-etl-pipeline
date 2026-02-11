@@ -1,55 +1,64 @@
-Databricks Delta Lake ETL Pipeline
-Business Context
+# Databricks Delta Lake ETL Pipeline
 
-Retail organizations ingest transactional order data daily.
-This project simulates a production-style data platform that processes raw retail orders into analytics-ready reporting tables using a layered Delta Lake architecture.
+## Overview
+This project implements an end-to-end ETL pipeline using Databricks and Delta Lake following the Medallion Architecture (Bronze → Silver → Gold).
 
-Architecture Overview
+The pipeline demonstrates incremental data ingestion, data quality enforcement, ACID-compliant Delta tables, and analytics-ready aggregations.
 
-Bronze Layer — Raw ingestion (Delta format, schema preserved)
+---
 
-Silver Layer — Data cleaning, validation, incremental MERGE upserts
+## Architecture
 
-Gold Layer — Business-level aggregations optimized for reporting
+Bronze Layer
+- Raw data ingestion
+- Stored as Delta tables
+- Schema inference and validation
 
-Key Engineering Concepts Demonstrated
+Silver Layer
+- Data cleaning and validation
+- Null handling
+- Deduplication
+- Computed fields (total_amount)
 
-Delta Lake ACID transactions
+Gold Layer
+- Business-level aggregations
+- Country-level sales metrics
+- Analytics-ready outputs
 
-Idempotent MERGE logic for incremental processing
+---
 
-Schema enforcement and data quality filtering
+## Key Features
 
-Separation of data lifecycle (Bronze → Silver → Gold)
+- Apache Spark (PySpark)
+- Delta Lake with ACID transactions
+- Incremental upserts using MERGE
+- Idempotent pipeline design
+- Bronze-Silver-Gold architecture
+- Data quality enforcement
+- Aggregation and reporting
 
-Rebuild-safe aggregation layer
+---
 
-Production-style ETL structuring
+## Incremental Processing
 
-Incremental Processing
+Simulated new batch data and implemented MERGE logic to:
 
-Simulated multiple ingestion batches and implemented Delta MERGE to:
+- Update existing records
+- Insert new records
+- Ensure safe reprocessing without duplication
 
-Update existing records
+---
 
-Insert new records
+## Technologies Used
 
-Prevent duplication during reprocessing
+- Databricks
+- Apache Spark
+- Delta Lake
+- SQL
+- Python
 
-This ensures safe retries and transactional integrity.
+---
 
-Technologies Used
+## Outcome
 
-Databricks
-
-Apache Spark (PySpark)
-
-Delta Lake
-
-SQL
-
-Python
-
-Outcome
-
-Built a structured, scalable ETL pipeline reflecting real-world data engineering best practices suitable for analytics and reporting environments.
+Built a production-style ETL pipeline demonstrating data engineering best practices suitable for real-world analytics environments.
